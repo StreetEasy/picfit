@@ -731,3 +731,45 @@ Thanks to these beautiful projects.
 .. _sentry: https://github.com/getsentry/sentry
 .. _raven: https://github.com/getsentry/raven-go
 .. _httpie: https://github.com/jakubroztocil/httpie
+
+StreetEasy Deployment
+=====================
+
+Build the Picfit Build Image
+
+    docker build -t picfit_build -f Dockerfile.build .
+
+
+Run the Picfit Build iamge to build the picfit binary
+
+    docker run --name="picfit" picfit_build
+
+
+Copy built picfit binary from picfit container
+
+    docker cp picfit:/go/src/github.com/StreetEasy/picfit/bin/ .
+
+
+Build se/images server image
+
+    docker build -t docker-prod.s--e.net/se-image-service -f Dockerfile .
+
+
+Run the se/images server image as a container
+
+    docker run --rm -p 9090:8080 \
+      --env AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+      --env AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+      --env SRC_BUCKET_NAME=$SRC_BUCKET_NAME \
+      --env DST_BUCKET_NAME=$DST_BUCKET_NAME \
+      docker-prod.s--e.net/se-image-service
+
+
+Deploy to Docker Repo
+
+    docker push docker-prod.s--e.net/se-image-service
+
+
+With Logging
+
+    docker run -it -p 8181:8080 --log-driver=syslog --log-opt syslog-address=tcp://192.168.99.100:5000 --log-opt syslog-tag="images" se/images

@@ -6,4 +6,4 @@ ADD . /go/src/github.com/StreetEasy/picfit
 
 WORKDIR /go/src/github.com/StreetEasy/picfit
 
-CMD make docker-build-static
+CMD make build-static
