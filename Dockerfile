@@ -1,4 +1,4 @@
-FROM scratch
+FROM centurylink/ca-certs
 
 ADD bin/picfit /picfit
 ADD config.json.tpl /config.json
