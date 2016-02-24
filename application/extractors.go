@@ -2,8 +2,8 @@ package application
 
 import (
 	"fmt"
-	"github.com/thoas/picfit/engines"
-	"github.com/thoas/picfit/image"
+	"github.com/StreetEasy/picfit/engines"
+	"github.com/StreetEasy/picfit/image"
 	"mime"
 	"net/url"
 	"path/filepath"

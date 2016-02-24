@@ -5,9 +5,9 @@ import (
 	"github.com/getsentry/raven-go"
 	"github.com/jmoiron/jsonq"
 	"github.com/thoas/gostorages"
-	"github.com/thoas/picfit/dummy"
-	"github.com/thoas/picfit/engines"
-	"github.com/thoas/picfit/util"
+	"github.com/StreetEasy/picfit/dummy"
+	"github.com/StreetEasy/picfit/engines"
+	"github.com/StreetEasy/picfit/util"
 )
 
 type Initializer func(jq *jsonq.JsonQuery, app *Application) error

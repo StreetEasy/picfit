@@ -3,10 +3,10 @@ package application
 import (
 	"github.com/gorilla/mux"
 	"github.com/thoas/gokvstores"
-	"github.com/thoas/picfit/engines"
-	"github.com/thoas/picfit/hash"
-	"github.com/thoas/picfit/signature"
-	"github.com/thoas/picfit/util"
+	"github.com/StreetEasy/picfit/engines"
+	"github.com/StreetEasy/picfit/hash"
+	"github.com/StreetEasy/picfit/signature"
+	"github.com/StreetEasy/picfit/util"
 	"net/http"
 	"net/url"
 )

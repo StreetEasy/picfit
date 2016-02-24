@@ -30,7 +30,7 @@ Build it
 
 ::
 
-    git clone https://github.com/thoas/picfit.git
+    git clone https://github.com/StreetEasy/picfit.git
 
 4. Run ``make build``
 
@@ -650,7 +650,7 @@ By default the format will be chosen in this order:
 
 * The ``fmt`` parameter if exists in query string
 * The original image format
-* The default format provided in the `application <https://github.com/thoas/picfit/blob/master/application/constants.go#L6>`_
+* The default format provided in the `application <https://github.com/StreetEasy/picfit/blob/master/application/constants.go#L6>`_
 
 Upload
 ------
@@ -675,7 +675,7 @@ It's recommended that the application run behind a CDN for larger applications
 or behind varnish for smaller ones.
 
 Provisioning is handled by Ansible_, you will find files in
-the `repository <https://github.com/thoas/picfit/tree/master/provisioning>`_.
+the `repository <https://github.com/StreetEasy/picfit/tree/master/provisioning>`_.
 
 You must have Ansible_ installed on your laptop, basically if you have python
 already installed you can do ::
@@ -695,7 +695,7 @@ The config is located to ``/etc/picfit/config.json`` on the vagrant box.
 Roadmap
 =======
 
-see `issues <https://github.com/thoas/picfit/issues>`_
+see `issues <https://github.com/StreetEasy/picfit/issues>`_
 
 Don't hesitate to send patch or improvements.
 
@@ -731,3 +731,45 @@ Thanks to these beautiful projects.
 .. _sentry: https://github.com/getsentry/sentry
 .. _raven: https://github.com/getsentry/raven-go
 .. _httpie: https://github.com/jakubroztocil/httpie
+
+StreetEasy Deployment
+=====================
+
+Build the Picfit Build Image
+
+    docker build -t picfit_build -f Dockerfile.build .
+
+
+Run the Picfit Build iamge to build the picfit binary
+
+    docker run --name="picfit" picfit_build
+
+
+Copy built picfit binary from picfit container
+
+    docker cp picfit:/go/src/github.com/StreetEasy/picfit/bin/ .
+
+
+Build se/images server image
+
+    docker build -t docker-prod.s--e.net/se-image-service -f Dockerfile .
+
+
+Run the se/images server image as a container
+
+    docker run --rm -p 9090:8080 \
+      --env AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+      --env AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+      --env SRC_BUCKET_NAME=$SRC_BUCKET_NAME \
+      --env DST_BUCKET_NAME=$DST_BUCKET_NAME \
+      docker-prod.s--e.net/se-image-service
+
+
+Deploy to Docker Repo
+
+    docker push docker-prod.s--e.net/se-image-service
+
+
+With Logging
+
+    docker run -it -p 8181:8080 --log-driver=syslog --log-opt syslog-address=tcp://192.168.99.100:5000 --log-opt syslog-tag="images" se/images

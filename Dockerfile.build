@@ -2,8 +2,8 @@ FROM golang:1.5.3
 
 ENV GO15VENDOREXPERIMENT 1
 
-ADD . /go/src/github.com/thoas/picfit
+ADD . /go/src/github.com/StreetEasy/picfit
 
-WORKDIR /go/src/github.com/thoas/picfit
+WORKDIR /go/src/github.com/StreetEasy/picfit
 
-CMD make docker-build-static
+CMD make build-static

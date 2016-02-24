@@ -215,4 +215,4 @@ reset requests/sec and will implement new features in a near future :)
 .. _go-json-rest: https://github.com/ant0ine/go-json-rest
 .. _negroni: https://github.com/codegangsta/negroni
 .. _martini: https://github.com/go-martini/martini
-.. _picfit: https://github.com/thoas/picfit
+.. _picfit: https://github.com/StreetEasy/picfit

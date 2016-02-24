@@ -2,7 +2,7 @@ package image
 
 import (
 	"github.com/thoas/gostorages"
-	"github.com/thoas/picfit/http"
+	"github.com/StreetEasy/picfit/http"
 	"io/ioutil"
 	"net/url"
 )

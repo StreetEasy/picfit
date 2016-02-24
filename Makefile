@@ -5,7 +5,7 @@ VERSION=$(awk '/Version/ { gsub("\"", ""); print $NF }' ${ROOT_DIR}/application/
 
 BIN_DIR = $(ROOT_DIR)/bin
 SSL_DIR = $(ROOT_DIR)/ssl
-APP_DIR = /go/src/github.com/thoas/picfit
+APP_DIR = /go/src/github.com/StreetEasy/picfit
 
 test: unit
 
