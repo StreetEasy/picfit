@@ -21,7 +21,11 @@
     }
   },
   "kvstore": {
-    "type": "cache"
+    "type": "redis",
+    "host": "$REDIS_HOST",
+    "port": "6379",
+    "password": "",
+    "db": 0
   },
   "options": {
     "quality": 70

@@ -740,7 +740,7 @@ Build the Picfit Build Image
     docker build -t picfit_build -f Dockerfile.build .
 
 
-Run the Picfit Build iamge to build the picfit binary
+Run the Picfit Build image to build the picfit binary
 
     docker run --name="picfit" picfit_build
 
@@ -762,6 +762,7 @@ Run the se/images server image as a container
       --env AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
       --env SRC_BUCKET_NAME=$SRC_BUCKET_NAME \
       --env DST_BUCKET_NAME=$DST_BUCKET_NAME \
+      --env REDIS_HOST=redis-proxy-legacy-staging.s--e.net \
       docker-prod.s--e.net/se-image-service
 
 
