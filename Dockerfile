@@ -1,6 +1,3 @@
-FROM scratch
-
+FROM centurylink/ca-certs
 ADD bin/picfit /picfit
-ADD ssl/ /etc/ssl
-
 CMD ["/picfit"]
